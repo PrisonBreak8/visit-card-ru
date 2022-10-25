@@ -42,9 +42,10 @@
 	&__body {
 		@media (max-width: $mobile) {
 			position: fixed;
+			z-index: 5;
 			overflow: auto;
-			width: 80%;
-			height: 100%;
+			width: 70%;
+			height: 50%;
 			top: 0;
 			right: 0;
 			right: -120%; // -120%
@@ -59,7 +60,7 @@
 				position: fixed;
 				top: 0;
 				right: -120%; // cgthdf 0
-				width: 80%;
+				width: 70%;
 				min-height: rem(80);
 				background-color: $bgColor;
 				transition: right 0.3s ease-in;
@@ -162,4 +163,14 @@
 			}
 		}
 	}
+}
+
+.dark._active {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: hsla(0deg, 0%, 0%, 0.8);
+	z-index: 0;
+	top: 0;
+	left: 0;
 }

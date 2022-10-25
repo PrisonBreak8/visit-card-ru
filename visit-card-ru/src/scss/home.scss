@@ -3,7 +3,7 @@
 .page {
 	// .page__about
 	&__about {
-		@include adaptiveValue("padding-top", 320, 100, 1120, 320, 1);
+		@include adaptiveValue("padding-top", 220, 80, 1120, 320, 1);
 	}
 }
 .about-page {
@@ -22,6 +22,7 @@
 	&__body {
 		display: flex;
 		align-items: flex-end;
+		justify-content: space-between;
 		gap: rem(30);
 		@media (max-width: $mobile) {
 			display: flex;
@@ -51,7 +52,6 @@
 	}
 	// .about-page__who-am-i
 	&__who-am-i {
-		@include adaptiveValue("	margin-right", 60, 0, 1120, 991, 1);
 		max-width: rem(580);
 		@media (max-width: $mobile) {
 			max-width: 100%;

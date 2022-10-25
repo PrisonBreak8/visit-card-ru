@@ -24,7 +24,7 @@ export let gotoBlock = (targetBlock, noHeader = false, speed = 500, offset = 0) 
 		};
 		// Закрываем меню, если оно открыто
 		document.documentElement.classList.contains("menu-open") ? menuClose() : null;
-
+		const menuDark = document.querySelector('.dark');
 		if (typeof SmoothScroll !== 'undefined') {
 			// Прокрутка с использованием дополнения
 			new SmoothScroll().animateScroll(targetBlockElement, '', options);
@@ -37,7 +37,9 @@ export let gotoBlock = (targetBlock, noHeader = false, speed = 500, offset = 0) 
 			});
 		}
 		FLS(`[gotoBlock]: Юхуу...едем к ${targetBlock}`);
+		menuDark.classList.remove('_active');
 	} else {
 		FLS(`[gotoBlock]: Ой ой..Такого блока нет на странице: ${targetBlock}`);
+		menuDark.classList.remove('_active');
 	}
 };

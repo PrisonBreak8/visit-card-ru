@@ -393,14 +393,16 @@ export function menuInit() {
 	let btnshowMoreCards = document.querySelector('.button');
 	const hiddenCards = document.querySelectorAll('.js-hidden');
 	let isHidden = true;
+
 	let iconMenu = document.querySelector(".icon-menu");
+	const menuDark = document.querySelector('.dark');
 
 
 	if (btnshowMoreCards) {
 		btnshowMoreCards.addEventListener("click", () => {
 			btnshowMoreCards.textContent = isHidden
-				? 'Hide'
-				: 'Show more';
+				? 'Скрыть'
+				: 'Показать еще';
 
 			isHidden = !isHidden;
 			hiddenCards.forEach(item => item.classList.toggle('js-hidden'));
@@ -409,12 +411,23 @@ export function menuInit() {
 
 	if (iconMenu) {
 		iconMenu.addEventListener("click", function (e) {
+			menuDark.classList.toggle('_active');
 			if (bodyLockStatus) {
 				bodyLockToggle();
 				document.documentElement.classList.toggle("menu-open");
+
 			}
 		});
-	};
+		if (menuDark) {
+			menuDark.addEventListener("click", function (e) {
+				menuDark.classList.remove('_active');
+				if (bodyLockStatus) {
+					bodyLockToggle();
+					document.documentElement.classList.toggle("menu-open");
+				}
+			});
+		};
+	}
 }
 export function menuOpen() {
 	bodyLock();
