@@ -1,7 +1,10 @@
 (() => {
   "use strict";
   let e = !0,
-    t = (t = 500) => {
+    t = (e = 500) => {
+      document.documentElement.classList.contains("lock") ? n(e) : r(e);
+    },
+    n = (t = 500) => {
       let n = document.querySelector("body");
       if (e) {
         let r = document.querySelectorAll("[data-lp]");
@@ -18,7 +21,7 @@
           }, t);
       }
     },
-    n = (t = 500) => {
+    r = (t = 500) => {
       let n = document.querySelector("body");
       if (e) {
         let r = document.querySelectorAll("[data-lp]");
@@ -39,50 +42,51 @@
           }, t);
       }
     };
-  function r(e) {
+  function o(e) {
     setTimeout(() => {
       window.FLS && console.log(e);
     }, 0);
   }
-  let o = (e, n = !1, o = 500, i = 0) => {
+  let i = (e, t = !1, r = 500, i = 0) => {
       const s = document.querySelector(e);
       if (s) {
         let a = "",
           u = 0;
-        n &&
+        t &&
           ((a = "header.header"), (u = document.querySelector(a).offsetHeight));
         let c = {
           speedAsDuration: !0,
-          speed: o,
+          speed: r,
           header: a,
           offset: i,
           easing: "easeOutQuad",
         };
-        if (
-          (document.documentElement.classList.contains("menu-open") &&
-            (t(), document.documentElement.classList.remove("menu-open")),
-          "undefined" != typeof SmoothScroll)
-        )
+        document.documentElement.classList.contains("menu-open") &&
+          (n(), document.documentElement.classList.remove("menu-open"));
+        const h = document.querySelector(".dark");
+        if ("undefined" != typeof SmoothScroll)
           new SmoothScroll().animateScroll(s, "", c);
         else {
           let e = s.getBoundingClientRect().top + scrollY;
           window.scrollTo({ top: u ? e - u : e, behavior: "smooth" });
         }
-        r(`[gotoBlock]: Юхуу...едем к ${e}`);
-      } else r(`[gotoBlock]: Ой ой..Такого блока нет на странице: ${e}`);
+        o(`[gotoBlock]: Юхуу...едем к ${e}`), h.classList.remove("_active");
+      } else
+        o(`[gotoBlock]: Ой ой..Такого блока нет на странице: ${e}`),
+          menuDark.classList.remove("_active");
     },
-    i = !1;
-  var s, a;
+    s = !1;
+  var a, u;
   setTimeout(() => {
-    if (i) {
+    if (s) {
       let e = new Event("windowScroll");
       window.addEventListener("scroll", function (t) {
         document.dispatchEvent(e);
       });
     }
   }, 0),
-    (s = void 0),
-    (a = function () {
+    (a = void 0),
+    (u = function () {
       function e(e, t) {
         for (var n = 0; n < t.length; n++) {
           var r = t[n];
@@ -766,17 +770,17 @@
           a >= 0 && ((o = i.slice(a + 1)), (i = i.slice(0, a)));
           var u = i.indexOf("?");
           return (
-            u >= 0 && ((s = H(i.slice(u + 1))), (i = i.slice(0, u))),
+            u >= 0 && ((s = B(i.slice(u + 1))), (i = i.slice(0, u))),
             { hash: o, path: i, port: t, query: s }
           );
         },
-        H = function (e) {
+        B = function (e) {
           return e.split("&").reduce(function (e, t) {
             var n = t.split("=");
             return (e[n[0]] = n[1]), e;
           }, {});
         },
-        B = function (e) {
+        H = function (e) {
           return (
             void 0 === e && (e = window.location.href),
             e.replace(/(\/#.*|\/|#.*)$/, "")
@@ -793,8 +797,8 @@
             return void 0 === e && (e = window.location.href), C(e).path;
           },
           parse: C,
-          parseQuery: H,
-          clean: B,
+          parseQuery: B,
+          clean: H,
         };
       function M(e, t, n) {
         return (
@@ -828,14 +832,14 @@
           })
         );
       }
-      var N = function (e) {
+      var D = function (e) {
         return (
           !!e &&
           ("object" == typeof e || "function" == typeof e) &&
           "function" == typeof e.then
         );
       };
-      function D(e, t) {
+      function N(e, t) {
         return (
           void 0 === t && (t = {}),
           function () {
@@ -852,7 +856,7 @@
                   );
                 };
                 var s = e.apply(t, r);
-                i || (N(s) ? s.then(n, o) : n(s));
+                i || (D(s) ? s.then(n, o) : n(s));
               });
             return s;
           }
@@ -917,7 +921,7 @@
                 return (
                   this.registered.get(e).forEach(function (e) {
                     i = i.then(function () {
-                      return D(e.fn, e.ctx).apply(void 0, r);
+                      return N(e.fn, e.ctx).apply(void 0, r);
                     });
                   }),
                   i.catch(function (n) {
@@ -1046,7 +1050,7 @@
         },
         Z = function (e) {
           var t = e.href;
-          return B(t) === B() && _(t) === _();
+          return H(t) === H() && _(t) === _();
         },
         ee = (function (e) {
           function t(t) {
@@ -1477,7 +1481,7 @@
             (n.once = function (e, t) {
               try {
                 return Promise.resolve($.do("once", e, t)).then(function () {
-                  return t.once ? D(t.once, t)(e) : Promise.resolve();
+                  return t.once ? N(t.once, t)(e) : Promise.resolve();
                 });
               } catch (e) {
                 return Promise.reject(e);
@@ -1486,7 +1490,7 @@
             (n.leave = function (e, t) {
               try {
                 return Promise.resolve($.do("leave", e, t)).then(function () {
-                  return t.leave ? D(t.leave, t)(e) : Promise.resolve();
+                  return t.leave ? N(t.leave, t)(e) : Promise.resolve();
                 });
               } catch (e) {
                 return Promise.reject(e);
@@ -1495,7 +1499,7 @@
             (n.enter = function (e, t, n) {
               try {
                 return Promise.resolve($.do("enter", e, t)).then(function () {
-                  return t.enter ? D(t.enter, t)(e, n) : Promise.resolve();
+                  return t.enter ? N(t.enter, t)(e, n) : Promise.resolve();
                 });
               } catch (e) {
                 return Promise.reject(e);
@@ -1531,7 +1535,7 @@
             (n.j = function (e, t, n) {
               try {
                 return Promise.resolve($.do(e, t, n)).then(function () {
-                  return n[e] ? D(n[e], n)(t) : Promise.resolve();
+                  return n[e] ? N(n[e], n)(t) : Promise.resolve();
                 });
               } catch (e) {
                 return Promise.reject(e);
@@ -1597,7 +1601,7 @@
               return function (n) {
                 var r = e.match(/enter/i) ? n.next : n.current,
                   o = t.byNamespace.get(r.namespace);
-                return o && o[e] ? D(o[e], o)(n) : Promise.resolve();
+                return o && o[e] ? N(o[e], o)(n) : Promise.resolve();
               };
             }),
             e
@@ -1936,10 +1940,10 @@
       })())();
     }),
     "object" == typeof exports && "undefined" != typeof module
-      ? (module.exports = a())
+      ? (module.exports = u())
       : "function" == typeof define && define.amd
-      ? define(a)
-      : ((s = s || self).barba = a()),
+      ? define(u)
+      : ((a = a || self).barba = u()),
     barba.init({
       transitions: [{ name: "base", async leave(e) {}, async enter() {} }],
     }),
@@ -1957,26 +1961,29 @@
       document.documentElement.classList.add(t);
     }),
     (function () {
-      let r = document.querySelector(".button");
-      const o = document.querySelectorAll(".js-hidden");
-      let i = !0,
-        s = document.querySelector(".icon-menu");
-      r &&
-        r.addEventListener("click", () => {
-          (r.textContent = i ? "Hide" : "Show more"),
-            (i = !i),
-            o.forEach((e) => e.classList.toggle("js-hidden"));
+      let n = document.querySelector(".button");
+      const r = document.querySelectorAll(".js-hidden");
+      let o = !0,
+        i = document.querySelector(".icon-menu");
+      const s = document.querySelector(".dark");
+      n &&
+        n.addEventListener("click", () => {
+          (n.textContent = o ? "Скрыть" : "Показать еще"),
+            (o = !o),
+            r.forEach((e) => e.classList.toggle("js-hidden"));
         }),
-        s &&
-          s.addEventListener("click", function (r) {
-            e &&
-              (((e = 500) => {
-                document.documentElement.classList.contains("lock")
-                  ? t(e)
-                  : n(e);
-              })(),
-              document.documentElement.classList.toggle("menu-open"));
-          });
+        i &&
+          (i.addEventListener("click", function (n) {
+            s.classList.toggle("_active"),
+              e &&
+                (t(), document.documentElement.classList.toggle("menu-open"));
+          }),
+          s &&
+            s.addEventListener("click", function (n) {
+              s.classList.remove("_active"),
+                e &&
+                  (t(), document.documentElement.classList.toggle("menu-open"));
+            }));
     })(),
     (function () {
       function e(e) {
@@ -1985,9 +1992,9 @@
           if (t.closest("[data-goto]")) {
             const n = t.closest("[data-goto]"),
               r = n.dataset.goto ? n.dataset.goto : "",
-              i = !!n.hasAttribute("data-goto-header"),
+              o = !!n.hasAttribute("data-goto-header"),
               s = n.dataset.gotoSpeed ? n.dataset.gotoSpeed : "500";
-            o(r, i, s), e.preventDefault();
+            i(r, o, s), e.preventDefault();
           }
         } else if ("watcherCallback" === e.type && e.detail) {
           const t = e.detail.entry,

@@ -197,9 +197,10 @@ body {
 @media (max-width: 47.99875em) {
   .menu__body {
     position: fixed;
+    z-index: 5;
     overflow: auto;
-    width: 80%;
-    height: 100%;
+    width: 70%;
+    height: 50%;
     top: 0;
     right: 0;
     right: -120%;
@@ -231,7 +232,7 @@ body {
     position: fixed;
     top: 0;
     right: -120%;
-    width: 80%;
+    width: 70%;
     min-height: 5rem;
     background-color: #f3f3f3;
     transition: right 0.3s ease-in;
@@ -325,6 +326,16 @@ body {
   }
 }
 
+.dark._active {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: hsla(0deg, 0%, 0%, 0.8);
+  z-index: 0;
+  top: 0;
+  left: 0;
+}
+
 @media (min-width: 70em) {
   .footer__body {
     padding-top: 4.375rem;
@@ -415,17 +426,17 @@ body {
 }
 @media (min-width: 70em) {
   .page__about {
-    padding-top: 20rem;
+    padding-top: 13.75rem;
   }
 }
 @media (min-width: 20em) and (max-width: 70em) {
   .page__about {
-    padding-top: clamp( 6.25rem , 0.75rem  +  27.5vw , 20rem );
+    padding-top: clamp( 5rem , 1.5rem  +  17.5vw , 13.75rem );
   }
 }
 @media (max-width: 20em) {
   .page__about {
-    padding-top: 6.25rem;
+    padding-top: 5rem;
   }
 }
 
@@ -458,6 +469,7 @@ body {
 .about-page__body {
   display: flex;
   align-items: flex-end;
+  justify-content: space-between;
   gap: 1.875rem;
 }
 @media (max-width: 47.99875em) {
@@ -500,21 +512,6 @@ body {
 }
 .about-page__who-am-i {
   max-width: 36.25rem;
-}
-@media (min-width: 70em) {
-  .about-page__who-am-i {
-    	margin-right: 3.75rem;
-  }
-}
-@media (min-width: 61.9375em) and (max-width: 70em) {
-  .about-page__who-am-i {
-    	margin-right: clamp( 0rem , -28.8081395349rem  +  46.511627907vw , 3.75rem );
-  }
-}
-@media (max-width: 61.9375em) {
-  .about-page__who-am-i {
-    	margin-right: 0rem;
-  }
 }
 @media (max-width: 47.99875em) {
   .about-page__who-am-i {
@@ -986,7 +983,7 @@ body {
 .contact__next-project::after {
   content: "";
   position: absolute;
-  right: 50px;
+  right: 0px;
   bottom: 6px;
   background-image: url("../img/icons/arrow-right.svg");
   background-repeat: no-repeat;
